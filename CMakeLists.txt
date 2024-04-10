@@ -13,8 +13,9 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
-target_link_libraries(main PRIVATE sfml-graphics)
+file(GLOB_RECURSE SRC CONFIGURE_DEPENDS src/*.cpp)
+add_executable(main ${SRC})
+target_link_libraries(main PRIVATE sfml-graphics sfml-network sfml-audio)
 target_compile_features(main PRIVATE cxx_std_17)
 
 if(WIN32)
